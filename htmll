@@ -54,9 +54,27 @@
     <div class="sidebar">
       <h3>Təhsil:</h3>
       <p>Azərbaycan Texniki Universitetində İnformasiya Təhlükəsizliyi üzrə təhsil alıram.</p>
+      
       <h3>Dillər:</h3>
       <p>İngilis (B1)</p>
+
+      <h3>Bacarıqlar:</h3>
+      <ul>
+        <li>C++</li>
+        <li>Python</li>
+        <li>HTML</li>
+        <li>Penetration Testing əsasları</li>
+        <li>Linux əmrləri</li>
+        <li>Şəbəkə analiz və inventarizasiyası</li>
+        <li>Zəifliklərin aşkarlanması</li>
+      </ul>
+
+      <h3>Kurslar və Sertifikatlar:</h3>
+      <ul>
+        <li>TryHackMe – Cyber Security platformasında aktiv iştirak</li>
+      </ul>
     </div>
+
     <div class="main">
       <p>Şölə Şahməmmədli, 18 yaşında, Xətai rayonu ərazisində yaşayıram. Azərbaycan Texniki Universitetində informasiya təhlükəsizliyi üzrə təhsil alıram.</p>
       <img src="https://drive.google.com/uc?export=view&id=1i8FZMxA2d95KeEB5j4eD3OnkoBvNKtTS" alt="Şölə Şahməmmədli şəkli">
@@ -64,9 +82,11 @@
   </div>
 
   <footer>
-    Email: <a href="mailto:sahmemmedlisole@gmail.com">sahmemmedlisole@gmail.com</a>
+    Email: <a href="mailto:sahmemmedlisole@gmail.com">sahmemmedlisole@gmail.com</a><br>
+    Əlaqə nömrəsi: <a href="tel:+994553469919">055 346 99 19</a>
   </footer>
 
 </body>
 </html>
+
 
