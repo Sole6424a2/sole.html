@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Şölə Şahməmmədli</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 30px;
+      background: #E0E7FF;
+      color: #1E3A8A;
+    }
+    .container {
+      display: flex;
+      padding: 20px;
+    }
+    .sidebar {
+      width: 220px;
+      background: #dbeafe;
+      padding: 10px;
+    }
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
+    .main img {
+      max-width: 200px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #E0E7FF;
+    }
+    a {
+      color: #1E40AF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Şölə Şahməmmədli</header>
+
+  <div class="container">
+    <div class="sidebar">
+      <h3>Təhsil:</h3>
+      <p>Azərbaycan Texniki Universitetində İnformasiya Təhlükəsizliyi üzrə təhsil alıram.</p>
+      <h3>Dillər:</h3>
+      <p>İngilis (B1)</p>
+    </div>
+    <div class="main">
+      <p>Şölə Şahməmmədli, 18 yaşında, Xətai rayonu ərazisində yaşayıram. Azərbaycan Texniki Universitetində informasiya təhlükəsizliyi üzrə təhsil alıram.</p>
+      <img src="https://drive.google.com/uc?export=view&id=1i8FZMxA2d95KeEB5j4eD3OnkoBvNKtTS" alt="Şölə Şahməmmədli şəkli">
+    </div>
+  </div>
+
+  <footer>
+    Email: <a href="mailto:sahmemmedlisole@gmail.com">sahmemmedlisole@gmail.com</a>
+  </footer>
+
+</body>
+</html>
+
