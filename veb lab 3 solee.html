@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Şölə Şahməmmədli - CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; display: flex; }
+    .left-panel {
+      width: 35%; background-color: #f8b8d1; padding: 20px; color: #333; min-height: 100vh;
+    }
+    .right-panel {
+      width: 65%; background-color: #fff; padding: 30px;
+    }
+    .profile-img {
+      width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;
+    }
+    h1 { font-size: 24px; margin: 10px 0; }
+    .section { margin-bottom: 20px; border-bottom: 1px solid #eee; }
+    .section h3 {
+      margin: 0; padding: 10px; background-color: #f1f1f1; cursor: pointer; color: #6a1b9a;
+    }
+    .section-content {
+      display: none; padding: 10px 0;
+    }
+    ul { list-style: none; padding: 0; }
+    ul li { margin-bottom: 8px; display: flex; align-items: center; }
+    ul li i { margin-right: 10px; color: #6a1b9a; }
+    .buttons {
+      margin-top: 10px;
+    }
+    button {
+      background-color: #6a1b9a; color: white; border: none;
+      padding: 5px 10px; margin-right: 10px; cursor: pointer; border-radius: 5px;
+    }
+    button:hover {
+      background-color: #4a0072;
+    }
+    .editable {
+      border: 1px dashed transparent;
+    }
+    .editable:focus {
+      outline: none;
+      border-color: #6a1b9a;
+      background-color: #fdf1fc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <img src="https://i.postimg.cc/yNdygcw1/Whats-App-kil-2025-05-02-saat-20-50-12-813d3b7e.jpg" alt="Profil şəkli" class="profile-img" />
+    <h1 contenteditable="true" class="editable">Şölə Şahməmmədli</h1>
+    <p contenteditable="true" class="editable">18 yaş | Bakı Xətai rayonu</p>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-at"></i> Əlaqə</h3>
+      <div class="section-content">
+        <ul id="contact-list">
+          <li><i class="fa-solid fa-phone"></i> <span contenteditable="true" class="editable">055 346 99 19</span></li>
+          <li><i class="fa-solid fa-envelope"></i> <span contenteditable="true" class="editable">sahmemmedlisole@gmail.com</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('contact-list')">Əlavə et</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-graduation-cap"></i> Təhsil</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Azərbaycan Texniki Universitetində İT sahəsi üzrə 1-ci kurs tələbəsiyəm.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-language"></i> Danışdığım Dillər</h3>
+      <div class="section-content">
+        <ul id="language-list">
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">Azərbaycan dili (ana dili)</span></li>
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">Rus dili</span></li>
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">İngilis dili</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('language-list')">Əlavə et</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-user"></i> Haqqımda</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Mən, Şahməmmədli Sölədi, 18 yaşım var və Azərbaycan Texniki Universitetində İnformasiya Təhlükəsizliyi ixtisası üzrə I kurs tələbəsiyəm. Kibertəhlükəsizlik və informasiya texnologiyaları sahəsinə dərin marağım var və bu istiqamətdə bilik və bacarıqlarımı davamlı olaraq inkişaf etdirməyə çalışıram. Məqsədim, gələcəkdə öz sahəmdə peşəkar mütəxəssis kimi fəaliyyət göstərmək və texnologiyanın inkişafına töhfə verməkdir. Məsuliyyətli, öyrənməyə həvəsli və komandada işləməyə uyğun bir gənc kimi daim yeni biliklərə açığam.
+
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-star"></i> Bacarıqlar</h3>
+      <div class="section-content">
+        <ul id="skills-list">
+          <li><i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">Liderlik</span></li>
+          <li><i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">Komanda işi</span></li>
+          <li><i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">Yaradıcılıq</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('skills-list', 'fa-check')">Əlavə et</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-briefcase"></i> İş Təcrübəsi</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Hal-hazırda rəsmi iş təcrübəm olmasa da, informasiya texnologiyaları sahəsində biliklərimi artırmaq və praktiki bacarıqlar qazanmaq üçün şəxsi layihələr üzərində çalışıram...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(header) {
+      const content = header.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function addItem(listId, icon = "fa-globe") {
+      const ul = document.getElementById(listId);
+      const li = document.createElement("li");
+      li.innerHTML = `<i class="fa-solid ${icon}"></i> <span contenteditable="true" class="editable">Yeni məlumat</span>`;
+      ul.appendChild(li);
+    }
+  </script>
+
+</body>
+</html>
