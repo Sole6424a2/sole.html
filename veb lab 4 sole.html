@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Şölə Şahməmmədli - CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; display: flex; }
+    .left-panel {
+      width: 35%; background-color: #f8b8d1; padding: 20px; color: #333; min-height: 100vh;
+    }
+    .right-panel {
+      width: 65%; background-color: #fff; padding: 30px;
+    }
+    .profile-img {
+      width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;
+    }
+    h1 { font-size: 24px; margin: 10px 0; }
+    .section { margin-bottom: 20px; border-bottom: 1px solid #eee; }
+    .section h3 {
+      margin: 0; padding: 10px; background-color: #f1f1f1; cursor: pointer; color: #6a1b9a;
+    }
+    .section-content {
+      display: none; padding: 10px 0;
+    }
+    ul { list-style: none; padding: 0; }
+    ul li { margin-bottom: 8px; display: flex; align-items: center; }
+    ul li i { margin-right: 10px; color: #6a1b9a; }
+    .buttons {
+      margin-top: 10px;
+    }
+    button {
+      background-color: #6a1b9a; color: white; border: none;
+      padding: 5px 10px; margin-right: 10px; cursor: pointer; border-radius: 5px;
+    }
+    button:hover {
+      background-color: #4a0072;
+    }
+    .editable {
+      border: 1px dashed transparent;
+    }
+    .editable:focus {
+      outline: none;
+      border-color: #6a1b9a;
+      background-color: #fdf1fc;
+    }
+    #saveMsg {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+      animation: fade 2s ease-in-out;
+    }
+    @keyframes fade {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <img src="https://i.postimg.cc/yNdygcw1/Whats-App-kil-2025-05-02-saat-20-50-12-813d3b7e.jpg" alt="Profil şəkli" class="profile-img" />
+    <h1 contenteditable="true" class="editable">Şölə Şahməmmədli</h1>
+    <p contenteditable="true" class="editable">18 yaş | Bakı Xətai rayonu</p>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-at"></i> Əlaqə</h3>
+      <div class="section-content">
+        <ul id="contact-list">
+          <li><i class="fa-solid fa-phone"></i> <span contenteditable="true" class="editable">055 346 99 19</span></li>
+          <li><i class="fa-solid fa-envelope"></i> <span contenteditable="true" class="editable">sahmemmedlisole@gmail.com</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('contact-list', 'fa-phone')">Əlavə et</button>
+          <button onclick="editItems('contact-list')">Redaktə et</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-graduation-cap"></i> Təhsil</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Azərbaycan Texniki Universitetində İT sahəsi üzrə 1-ci kurs tələbəsiyəm.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-language"></i> Danışdığım Dillər</h3>
+      <div class="section-content">
+        <ul id="language-list">
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">Azərbaycan dili (ana dili)</span></li>
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">Rus dili</span></li>
+          <li><i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">İngilis dili</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('language-list', 'fa-globe')">Əlavə et</button>
+          <button onclick="editItems('language-list')">Redaktə et</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-user"></i> Haqqımda</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Mən, Şahməmmədli Sölədi, ...</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-star"></i> Bacarıqlar</h3>
+      <div class="section-content">
+        <ul id="skills-list">
+          <li><i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">Liderlik</span></li>
+          <li><i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">Komanda işi</span></li>
+        </ul>
+        <div class="buttons">
+          <button onclick="addItem('skills-list', 'fa-check')">Əlavə et</button>
+          <button onclick="editItems('skills-list')">Redaktə et</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 onclick="toggleSection(this)"><i class="fa-solid fa-briefcase"></i> İş Təcrübəsi</h3>
+      <div class="section-content">
+        <p contenteditable="true" class="editable">Hal-hazırda rəsmi iş təcrübəm olmasa da...</p>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="saveData()">Yadda Saxla</button>
+      <div id="saveMsg">✔ Məlumatlar uğurla yadda saxlanıldı!</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(header) {
+      const content = header.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function addItem(listId, icon = "fa-globe") {
+      const ul = document.getElementById(listId);
+      const li = document.createElement("li");
+      li.innerHTML = `<i class="fa-solid ${icon}"></i> <span contenteditable="true" class="editable">Yeni məlumat</span>`;
+      ul.appendChild(li);
+    }
+
+    function editItems(listId) {
+      const spans = document.querySelectorAll(`#${listId} span`);
+      spans.forEach(span => span.focus());
+    }
+
+    function getCurrentData() {
+      return {
+        name: document.querySelector('h1').innerText.trim(),
+        location: document.querySelector('.left-panel p').innerText.trim(),
+        contact: [...document.querySelectorAll('#contact-list span')].map(e => e.innerText.trim()),
+        education: document.querySelectorAll('.section-content p')[0].innerText.trim(),
+        languages: [...document.querySelectorAll('#language-list span')].map(e => e.innerText.trim()),
+        about: document.querySelectorAll('.section-content p')[1].innerText.trim(),
+        skills: [...document.querySelectorAll('#skills-list span')].map(e => e.innerText.trim()),
+        experience: document.querySelectorAll('.section-content p')[2].innerText.trim()
+      };
+    }
+
+    function saveData() {
+      const data = getCurrentData();
+      if (!data.name || !data.contact[1]?.includes("@")) {
+        alert("Zəhmət olmasa düzgün ad və e-poçt daxil edin.");
+        return;
+      }
+      localStorage.setItem("cvData", JSON.stringify(data));
+      const msg = document.getElementById("saveMsg");
+      msg.style.display = "block";
+      setTimeout(() => msg.style.display = "none", 2000);
+    }
+
+    function loadData() {
+      const raw = localStorage.getItem("cvData");
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      document.querySelector('h1').innerText = data.name || "";
+      document.querySelector('.left-panel p').innerText = data.location || "";
+
+      const contactList = document.getElementById("contact-list");
+      contactList.innerHTML = "";
+      data.contact?.forEach(text => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i class="fa-solid fa-phone"></i> <span contenteditable="true" class="editable">${text}</span>`;
+        contactList.appendChild(li);
+      });
+
+      document.querySelectorAll('.section-content p')[0].innerText = data.education || "";
+
+      const langList = document.getElementById("language-list");
+      langList.innerHTML = "";
+      data.languages?.forEach(text => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i class="fa-solid fa-globe"></i> <span contenteditable="true" class="editable">${text}</span>`;
+        langList.appendChild(li);
+      });
+
+      document.querySelectorAll('.section-content p')[1].innerText = data.about || "";
+
+      const skillsList = document.getElementById("skills-list");
+      skillsList.innerHTML = "";
+      data.skills?.forEach(text => {
+        const li = document.createElement("li");
+        li.innerHTML = `<i class="fa-solid fa-check"></i> <span contenteditable="true" class="editable">${text}</span>`;
+        skillsList.appendChild(li);
+      });
+
+      document.querySelectorAll('.section-content p')[2].innerText = data.experience || "";
+    }
+
+    window.onload = loadData;
+  </script>
+</body>
+</html>
