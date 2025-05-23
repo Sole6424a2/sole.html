@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Şölə Şahməmmədli - CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; display: flex; }
+    .left-panel {
+      width: 35%; background-color: #f8b8d1; padding: 20px; color: #333; min-height: 100vh;
+    }
+    .right-panel {
+      width: 65%; background-color: #fff; padding: 30px;
+    }
+    .profile-img {
+      width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;
+    }
+    h1 { font-size: 24px; margin: 10px 0; }
+    .section { margin-bottom: 20px; border-bottom: 1px solid #eee; position: relative; }
+    .section h3 {
+      margin: 0; padding: 10px; background-color: #f1f1f1; cursor: pointer; color: #6a1b9a;
+    }
+    .section-content {
+      padding: 10px 0;
+    }
+    ul { list-style: none; padding: 0; }
+    ul li { margin-bottom: 8px; display: flex; align-items: center; }
+    ul li i { margin-right: 10px; color: #6a1b9a; }
+    .buttons {
+      margin-top: 10px;
+    }
+    button {
+      background-color: #6a1b9a; color: white; border: none;
+      padding: 5px 10px; margin-right: 10px; cursor: pointer; border-radius: 5px;
+    }
+    button:hover {
+      background-color: #4a0072;
+    }
+    .editable {
+      border: 1px dashed transparent;
+    }
+    .editable:focus {
+      outline: none;
+      border-color: #6a1b9a;
+      background-color: #fdf1fc;
+    }
+    #saveMsg {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+      animation: fade 2s ease-in-out;
+    }
+    @keyframes fade {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .edit-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: #6a1b9a;
+      color: #fff;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .edit-btn:hover {
+      background: #4a0072;
+    }
+    .reset-btn {
+      background-color: #d32f2f;
+    }
+    .reset-btn:hover {
+      background-color: #9a0000;
+    }
+    input.edit-input, textarea.edit-textarea {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+    textarea.edit-textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <img src="https://i.postimg.cc/yNdygcw1/Whats-App-kil-2025-05-02-saat-20-50-12-813d3b7e.jpg" alt="Profil şəkli" class="profile-img" />
+    <h1 id="nameDisplay"></h1>
+    <button class="edit-btn" onclick="editField('name')">Düzəliş et</button>
+    <p id="locationDisplay"></p>
+    <button class="edit-btn" onclick="editField('location')">Düzəliş et</button>
+
+    <div class="section" id="contactSection">
+      <h3><i class="fa-solid fa-at"></i> Əlaqə</h3>
+      <div class="section-content" id="contactDisplay"></div>
+      <button class="edit-btn" onclick="editField('contact')">Düzəliş et</button>
+    </div>
+
+    <div class="section" id="educationSection">
+      <h3><i class="fa-solid fa-graduation-cap"></i> Təhsil</h3>
+      <div class="section-content" id="educationDisplay"></div>
+      <button class="edit-btn" onclick="editField('education')">Düzəliş et</button>
+    </div>
+
+    <div class="section" id="languageSection">
+      <h3><i class="fa-solid fa-language"></i> Danışdığım Dillər</h3>
+      <div class="section-content" id="languageDisplay"></div>
+      <button class="edit-btn" onclick="editField('languages')">Düzəliş et</button>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="section" id="aboutSection">
+      <h3><i class="fa-solid fa-user"></i> Haqqımda</h3>
+      <div class="section-content" id="aboutDisplay"></div>
+      <button class="edit-btn" onclick="editField('about')">Düzəliş et</button>
+    </div>
+
+    <div class="section" id="skillsSection">
+      <h3><i class="fa-solid fa-star"></i> Bacarıqlar</h3>
+      <div class="section-content" id="skillsDisplay"></div>
+      <button class="edit-btn" onclick="editField('skills')">Düzəliş et</button>
+    </div>
+
+    <div class="section" id="experienceSection">
+      <h3><i class="fa-solid fa-briefcase"></i> İş Təcrübəsi</h3>
+      <div class="section-content" id="experienceDisplay"></div>
+      <button class="edit-btn" onclick="editField('experience')">Düzəliş et</button>
+    </div>
+
+    <div class="buttons" style="margin-top: 30px;">
+      <button onclick="saveData()">Yadda Saxla</button>
+      <button class="reset-btn" onclick="resetData()">Hamısını Sıfırla</button>
+      <div id="saveMsg">✔ Məlumatlar uğurla yadda saxlanıldı!</div>
+    </div>
+  </div>
+
+  <script>
+    // Simulyasiya üçün "fetch" funksiyası (JSON fayldan gələn data kimi)
+    function fetchData() {
+      return new Promise(resolve => {
+        // Simulyasiya edilmiş JSON data
+        const data = {
+          name: "Şölə Şahməmmədli",
+          location: "18 yaş | Bakı Xətai rayonu",
+          contact: [
+            { type: "phone", value: "055 346 99 19" },
+            { type: "email", value: "sahmemmedlisole@gmail.com" }
+          ],
+          education: "Azərbaycan Texniki Universitetində İT sahəsi üzrə 1-ci kurs tələbəsiyəm.",
+          languages: ["Azərbaycan dili (ana dili)", "Rus dili", "İngilis dili"],
+          about: "Mən, Şahməmmədli Sölədi, ...",
+          skills: ["Liderlik", "Komanda işi"],
+          experience: "Hal-hazırda rəsmi iş təcrübəm olmasa da..."
+        };
+        setTimeout(() => resolve(data), 500); // 0.5s gecikmə simulyasiyası
+      });
+    }
+
+    let cvData = null;
+    let editingField = null;
+
+    // DOM elementlər
+    const nameDisplay = document.getElementById('nameDisplay');
+    const locationDisplay = document.getElementById('locationDisplay');
+    const contactDisplay = document.getElementById('contactDisplay');
+    const educationDisplay = document.getElementById('educationDisplay');
+    const languageDisplay = document.getElementById('languageDisplay');
+    const aboutDisplay = document.getElementById('aboutDisplay');
+    const skillsDisplay = document.getElementById('skillsDisplay');
+    const experienceDisplay = document.getElementById('experienceDisplay');
+    const saveMsg = document.getElementById('saveMsg');
+
+    function renderData(data) {
+      nameDisplay.innerText = data.name || "";
+      locationDisplay.innerText = data.location || "";
+
+      // Contact (list)
+      contactDisplay.innerHTML = "";
+      data.contact.forEach(c => {
+        const icon = c.type === "email" ? "fa-envelope" : "fa-phone";
+        const div = document.createElement("div");
+        div.innerHTML = `<i class="fa-solid ${icon}" style="margin-right:8px;"></i>${c.value}`;
+        contactDisplay.appendChild(div);
+      });
+
+      educationDisplay.innerText = data.education || "";
+
+      // Languages (list)
+      languageDisplay.innerHTML = "";
+      data.languages.forEach(lang => {
+        const div = document.createElement("div");
+        div.innerHTML = `<i class="fa-solid fa-globe" style="margin-right:8px;"></i>${lang}`;
+        languageDisplay.appendChild(div);
+      });
+
+      aboutDisplay.innerText = data.about || "";
+
+      // Skills (list)
+      skillsDisplay.innerHTML = "";
+      data.skills.forEach(skill => {
+        const div = document.createElement("div");
+        div.innerHTML = `<i class="fa-solid fa-check" style="margin-right:8px;"></i>${skill}`;
+        skillsDisplay.appendChild(div);
+      });
+
+      experienceDisplay.innerText = data.experience || "";
+    }
+
+    // Input generator for editing
+    function createInput(field, value, isMulti=false) {
+      if (isMulti) {
+        const textarea = document.createElement("textarea");
+        textarea.className = "edit-textarea";
+        textarea.value = value.join("\n");
+        textarea.dataset.field = field;
+        return textarea;
+      } else {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "edit-input";
+        input.value = value;
+        input.dataset.field = field;
+        return input;
+      }
+    }
+
+    function editField(field) {
+      if (editingField) {
+        alert("Zəhmət olmasa əvvəlki redaktəni tamamlayın.");
+        return;
+      }
+      editingField = field;
+
+      // Hər sahəyə görə fərqli redaktə metodları:
+      switch (field) {
+        case 'name':
+          editSingleField(nameDisplay, cvData.name, false);
+          break;
+        case 'location':
+          editSingleField(locationDisplay, cvData.location, false);
+          break;
+        case 'contact':
+          // contact array to textarea with each contact on separate line "type:value"
+          const contactLines = cvData.contact.map(c => `${c.type}:${c.value}`);
+          editSingleField(contactDisplay, contactLines, true);
+          break;
+        case 'education':
+          editSingleField(educationDisplay, cvData.education, false);
+          break;
+        case 'languages':
+          editSingleField(languageDisplay, cvData.languages, true);
+          break;
+        case 'about':
+          editSingleField(aboutDisplay, cvData.about, false);
+          break;
+        case 'skills':
+          editSingleField(skillsDisplay, cvData.skills, true);
+          break;
+        case 'experience':
+          editSingleField(experienceDisplay, cvData.experience, false);
+          break;
+      }
+    }
+
+    function editSingleField(container, value, isMulti) {
+      container.innerHTML = ""; // Clear current content
+
+      const inputElem = createInput(editingField, value, isMulti);
+      container.appendChild(inputElem);
+
+      const saveBtn = document.createElement("button");
+      saveBtn.innerText = "Yadda Saxla";
+      saveBtn.style.marginTop = "8px";
+      saveBtn.onclick = () => saveEdit(container, inputElem, editingField, isMulti);
+      container.appendChild(saveBtn);
+
+      const cancelBtn = document.createElement("button");
+      cancelBtn.innerText = "İmtina et";
+      cancelBtn.style.marginTop = "8px";
+      cancelBtn.style.marginLeft = "8px";
+      cancelBtn.onclick = () => {
+        editingField = null;
+        renderData(cvData);
+      };
+      container.appendChild(cancelBtn);
+
+      // Focus input immediately
+      inputElem.focus();
+    }
+
+    function saveEdit(container, inputElem, field, isMulti) {
+      let newValue = inputElem.value.trim();
+      if (!newValue) {
+        alert("Boş məlumat daxil etmək olmaz.");
+        return;
+      }
+
+      switch (field) {
+        case "name":
+          cvData.name = newValue;
+          break;
+        case "location":
+          cvData.location = newValue;
+          break;
+        case "contact":
+          // Parse lines "type:value"
+          const lines = newValue.split("\n").map(l => l.trim()).filter(l => l);
+          const contacts = [];
+          for (const line of lines) {
+            const parts = line.split(":");
+            if (parts.length !== 2) {
+              alert("Əlaqə məlumatı 'type:value' formatında olmalıdır. Məsələn: phone:055 123 45 67");
+              return;
+            }
+            const type = parts[0].trim().toLowerCase();
+            const value = parts[1].trim();
+            if (type !== "phone" && type !== "email") {
+              alert("Əlaqə növü yalnız 'phone' və ya 'email' ola bilər.");
+              return;
+            }
+            contacts.push({ type, value });
+          }
+          cvData.contact = contacts;
+          break;
+        case "education":
+          cvData.education = newValue;
+          break;
+        case "languages":
+          cvData.languages = newValue.split("\n").map(l => l.trim()).filter(l => l);
+          break;
+        case "about":
+          cvData.about = newValue;
+          break;
+        case "skills":
+          cvData.skills = newValue.split("\n").map(l => l.trim()).filter(l => l);
+          break;
+        case "experience":
+          cvData.experience = newValue;
+          break;
+      }
+
+      editingField = null;
+      renderData(cvData);
+      saveData();
+    }
+
+    // Save to localStorage
+    function saveData() {
+      localStorage.setItem("cvData", JSON.stringify(cvData));
+      saveMsg.style.display = "block";
+      setTimeout(() => saveMsg.style.display = "none", 2000);
+    }
+
+    // Load from localStorage or fetch default data
+    function loadData() {
+      const stored = localStorage.getItem("cvData");
+      if (stored) {
+        cvData = JSON.parse(stored);
+        renderData(cvData);
+      } else {
+        fetchData().then(data => {
+          cvData = data;
+          renderData(cvData);
+          saveData();
+        });
+      }
+    }
+
+    // Reset all to last saved version (reload localStorage data or initial fetch)
+    function resetData() {
+      if (confirm("Hamısını sıfırlamaq istəyirsiniz?")) {
+        editingField = null;
+        localStorage.removeItem("cvData");
+        loadData();
+      }
+    }
+
+    window.onload = loadData;
+  </script>
+</body>
+</html>
